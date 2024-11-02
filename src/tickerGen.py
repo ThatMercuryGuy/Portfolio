@@ -13,5 +13,9 @@ for i in range (len(nifty_50_symbols)):
     nifty_50_symbols[i] += '.NS'
 
 import pickle
-with open ('..\\obj\\tickers.dat', 'wb') as f:
+import os
+
+script_dir = os.path.dirname(__file__)
+
+with open (f'{script_dir}\\..\\obj\\tickers.dat', 'wb') as f:
     pickle.dump (nifty_50_symbols, f)

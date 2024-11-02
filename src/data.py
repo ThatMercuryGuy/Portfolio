@@ -1,7 +1,9 @@
 import pandas
 import pickle
+import os
 
-with open ('..\\obj\\tickers.dat', 'rb') as f:
+script_dir = os.path.dirname(__file__)
+with open (f'{script_dir}\\..\\obj\\tickers.dat', 'rb') as f:
     nifty_50_symbols = pickle.load (f)
 '''nifty_50_symbols = ['RELIANCE', 'HDFCBANK', 'ICICIBANK', 'INFY', 'TCS',
                     'HINDUNILVR', 'ITC', 'LT', 'KOTAKBANK', 'AXISBANK',
@@ -17,7 +19,7 @@ with open ('..\\obj\\tickers.dat', 'rb') as f:
 
 data = list ()
 
-with open ('..\\obj\\dataframe.dat', 'rb') as f:
+with open (f'{script_dir}\\..\\obj\\dataframe.dat', 'rb') as f:
     deserial_data = pickle.load (f)
     for i in nifty_50_symbols:
         data.append(pandas.DataFrame(data = deserial_data[i]))
