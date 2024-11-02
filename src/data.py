@@ -2,6 +2,7 @@ import pandas
 import pickle
 import os
 
+#Retrieve Ticker Symbols
 script_dir = os.path.dirname(__file__)
 with open (f'{script_dir}\\..\\obj\\tickers.dat', 'rb') as f:
     nifty_50_symbols = pickle.load (f)
@@ -19,6 +20,7 @@ with open (f'{script_dir}\\..\\obj\\tickers.dat', 'rb') as f:
 
 data = list ()
 
+#Load Data into ListOFDataFrames
 with open (f'{script_dir}\\..\\obj\\dataframe.dat', 'rb') as f:
     deserial_data = pickle.load (f)
     for i in nifty_50_symbols:

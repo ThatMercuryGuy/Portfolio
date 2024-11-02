@@ -9,6 +9,7 @@ nifty_50_symbols = ['RELIANCE', 'HDFCBANK', 'ICICIBANK', 'INFY', 'TCS',
                     'TATACONSUM', 'COALINDIA', 'SBILIFE', 'HDFCLIFE', 'DIVISLAB',
                     'HEROMOTOCO', 'BAJAJ-AUTO', 'APOLLOHOSP', 'SHRIRAMFIN', 'LTIM']
 
+#Format for National Stock Exchange
 for i in range (len(nifty_50_symbols)):
     nifty_50_symbols[i] += '.NS'
 
@@ -17,5 +18,6 @@ import os
 
 script_dir = os.path.dirname(__file__)
 
+#Serialize Tickers to obj/tickers.dat
 with open (f'{script_dir}\\..\\obj\\tickers.dat', 'wb') as f:
     pickle.dump (nifty_50_symbols, f)
