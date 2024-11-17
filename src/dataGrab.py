@@ -16,17 +16,9 @@ data = list ()
 for ticker in nifty_50_symbols:
     data.append(get_data(ticker, start_date='01/01/2024', end_date='10/20/2024', interval='1wk'))
 
-
+#Add all data to a single CSV file
 df = pandas.DataFrame ()
 for i in range (len (data)):
     df = pandas.concat ([df, data[i]])
 
 df.to_csv (f'{script_dir}\\..\\obj\\dataframe.csv')
-
-'''with open(f'{script_dir}\\..\\obj\\dataframe.csv', 'w') as f:
-    w = csv.writer (f)
-    w.writerows(data)'''
-#Serialize DataFrame (dict) to obj/dataframe.json
-'''with open(f'{script_dir}\\..\\obj\\dataframe.json', 'w') as f:
-    print((type(data)))
-    json.dump(data, f)'''
