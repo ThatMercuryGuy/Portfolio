@@ -62,6 +62,7 @@ decision_space = StatsPlots.groupedbar(
     vcat([value.(x; result = i)' for i in 1:result_count(model)]...);
     bar_position = :stack,
 
+    label = "",
     xlabel = "Solution #",
     ylabel = "Investment (\$)",
     title = "Decision space",
