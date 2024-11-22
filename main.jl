@@ -68,3 +68,19 @@ decision_space = StatsPlots.groupedbar(
     title = "Decision space",
 )
 Plots.plot(objective_space, decision_space; layout = (2, 1), size = (600, 600))
+
+using DelimitedFiles
+function writeToCSV(candidate::Int64)
+    tickers = names(df)
+    data = value.(x; result = candidate)
+    for i in reverse(1:50)
+        if data[i] < 0.1
+            splice!(data, i)
+            splice!(tickers, i)
+        else
+            data[i] = round(data[i], digits=2)
+        end
+    end
+    writedlm("obj/output.csv", [tickers data], ": ")
+    println("Expected Monthly Return: ", round(value(expected_return; result = candidate), digits=2), '%')
+end
