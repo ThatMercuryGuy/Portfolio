@@ -84,3 +84,7 @@ function writeToCSV(candidate::Int64)
     writedlm("obj/output.csv", [tickers data], ": ")
     println("Expected Monthly Return: ", round(value(expected_return; result = candidate), digits=2), '%')
 end
+
+function extrapYearlyReturn(candidate::Int64)
+    println("Expected Yearly Return: ", round(((1 + (value(expected_return; result = candidate))*0.01)^12 - 1) * 100, digits=2), '%')
+end
