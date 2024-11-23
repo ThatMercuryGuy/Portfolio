@@ -25,7 +25,7 @@ set_optimizer_attribute(model, MOA.SolutionLimit(), 20)
 @constraint(model, sum(x) <= 100)
 @expression(model, variance, x' * Q * x)
 @expression(model, expected_return, r' * x)
-
+@constraint(model, variance < 20)
 #=@variable(model, bought[1:50], )=#
 # We want to minimize variance and maximize expected return, but we must pick
 # a single objective sense `Min`, and negate any `Max` objectives:
