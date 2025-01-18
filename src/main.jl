@@ -10,6 +10,8 @@ names(df)
 returns = diff(Matrix(df); dims = 1) ./ Matrix(df[1:end-1, :])
 
 r = vec(Statistics.mean(returns; dims = 1))
+#Implement Weighted Mean
+
 Q = Statistics.cov(returns)
 
 using JuMP
@@ -19,17 +21,19 @@ import Ipopt
 model = Model(() -> MOA.Optimizer(Ipopt.Optimizer))
 set_optimizer_attribute(model, MOA.Algorithm(), MOA.EpsilonConstraint())
 set_optimizer_attribute(model, MOA.SolutionLimit(), 20)
-#set_silent(model)
+set_silent(model)
 
 @variable(model, x[1:50] >= 0)
-@constraint(model, sum(x) <= 100)
+@constraint(model, sum(x) == 100)
 @expression(model, variance, x' * Q * x)
 @expression(model, expected_return, r' * x)
-@constraint(model, variance < 20)
-#=@variable(model, bought[1:50], )=#
+@constraint(model, variance <= 20)
+
 # We want to minimize variance and maximize expected return, but we must pick
 # a single objective sense `Min`, and negate any `Max` objectives:
-@objective(model, Min, [variance, -expected_return])
+
+
+@objective(model, Min, [variance, -expected_return, -call_derivative_price])
 optimize!(model)
 @assert termination_status(model) == OPTIMAL
 solution_summary(model)

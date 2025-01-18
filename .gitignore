@@ -1,2 +1,3 @@
 *.dat
 obj/output.csv
+.notes
