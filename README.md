@@ -13,12 +13,10 @@ continuous variance-at-risk (cVaR).
 
 For an at-the-money option (i.e. strike price equals asset's market price)
 σ = C/S * √(2/(πT))
+
 where σ is the implied volatility
-
 C is the option price (Option Premium)
-
 S is the spot price
-
 T is time to maturity
 
 
